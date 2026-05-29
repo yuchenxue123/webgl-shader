@@ -121,6 +121,11 @@ function makeGroup(info: UniformInfo): HTMLElement {
   return group;
 }
 
+function snapToStep(v: number, min: number, max: number, step: number): number {
+  const snapped = min + Math.round((v - min) / step) * step;
+  return Math.max(min, Math.min(max, snapped));
+}
+
 function makeSlider(
   _name: string,
   _idx: number,
@@ -131,6 +136,10 @@ function makeSlider(
   onChange: (v: number) => void,
   label: string
 ): HTMLElement {
+  const s = step.toString();
+  const decimals = s.includes(".") ? s.split(".")[1].length : 0;
+  const clamped = snapToStep(value, min, max, step);
+
   const row = document.createElement("div");
   row.className = "uniform-row";
 
@@ -144,17 +153,17 @@ function makeSlider(
   slider.type = "range";
   slider.min = String(min);
   slider.max = String(max);
-  slider.step = String(step);
-  slider.value = String(value);
+  slider.step = s;
+  slider.value = String(clamped);
 
   const valSpan = document.createElement("span");
   valSpan.className = "val";
-  valSpan.textContent = value.toFixed(step < 0.1 ? 2 : 0);
+  valSpan.textContent = clamped.toFixed(decimals);
 
   slider.addEventListener("input", () => {
     const v = parseFloat(slider.value);
     onChange(v);
-    valSpan.textContent = v.toFixed(step < 0.1 ? 2 : 0);
+    valSpan.textContent = v.toFixed(decimals);
   });
 
   row.appendChild(slider);
