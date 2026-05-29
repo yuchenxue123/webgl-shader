@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 13px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#gl-canvas {
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 0;
+  cursor: crosshair;
+}
+
+#panel {
+  flex: 0 0 38vh;
+  display: flex;
+  flex-direction: column;
+  background: #252526;
+  border-top: 2px solid #3e3e42;
+}
+
+#toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 12px;
+  background: #333333;
+  border-bottom: 1px solid #3e3e42;
+  flex-shrink: 0;
+}
+
+#preset-select {
+  background: #3c3c3c;
+  color: #d4d4d4;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-family: inherit;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+#preset-select:focus {
+  border-color: #007acc;
+}
+
+#compile-status {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 1px 8px;
+  border-radius: 3px;
+}
+
+.status-ok {
+  color: #4ec94e;
+  background: #1a3a1a;
+}
+
+.status-error {
+  color: #f44747;
+  background: #3a1a1a;
+}
+
+/* ---- editor + sidebar ---- */
+
+#editor-area {
+  flex: 1 1 0;
+  display: flex;
+  min-height: 0;
+}
+
+#code-editor {
+  flex: 1 1 0;
+  min-width: 0;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: none;
+  outline: none;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  tab-size: 4;
+  resize: none;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+/* ---- uniforms sidebar ---- */
+
+#uniforms-panel {
+  flex: 0 0 240px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #2a2a2c;
+  border-left: 1px solid #3e3e42;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+#uniforms-panel:empty {
+  display: none;
+}
+
+.uniform-group {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.uniform-group:hover {
+  border-color: #555;
+}
+
+.uniform-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.uniform-header input[type="color"] {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  flex-shrink: 0;
+}
+
+.uniform-name {
+  font-size: 11px;
+  color: #8ab4f8;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uniform-type {
+  font-size: 9px;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.uniform-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.uniform-row label {
+  font-size: 10px;
+  color: #888;
+  min-width: 10px;
+  text-align: right;
+}
+
+.uniform-row input[type="range"] {
+  flex: 1 1 0;
+  height: 4px;
+  accent-color: #007acc;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.uniform-row .val {
+  font-size: 10px;
+  color: #aaa;
+  min-width: 38px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="color"] {
+  width: 28px;
+  height: 22px;
+  border: 1px solid #555;
+  border-radius: 3px;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: #007acc;
+  width: 14px;
+  height: 14px;
+}
+
+/* ---- error display ---- */
+
+#error-display {
+  flex-shrink: 0;
+  max-height: 30%;
+  background: #1a1a1a;
+  color: #f44747;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.4;
+  border-top: 1px solid #3e3e42;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+#error-display:empty {
+  display: none;
+}
