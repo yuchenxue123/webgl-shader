@@ -182,9 +182,32 @@ body {
 .uniform-row input[type="range"] {
   flex: 1 1 0;
   height: 4px;
-  accent-color: #007acc;
   cursor: pointer;
   min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 2px;
+  outline: none;
+}
+
+.uniform-row input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #007acc;
+  border: none;
+  cursor: pointer;
+}
+
+.uniform-row input[type="range"]::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #007acc;
+  border: none;
+  cursor: pointer;
 }
 
 .uniform-row .val {

@@ -160,10 +160,18 @@ function makeSlider(
   valSpan.className = "val";
   valSpan.textContent = clamped.toFixed(decimals);
 
+  const updateProgress = () => {
+    const pct = ((parseFloat(slider.value) - min) / (max - min)) * 100;
+    slider.style.background =
+      `linear-gradient(to right, #007acc 0%, #007acc ${pct}%, #444 ${pct}%, #444 100%)`;
+  };
+  updateProgress();
+
   slider.addEventListener("input", () => {
     const v = parseFloat(slider.value);
     onChange(v);
     valSpan.textContent = v.toFixed(decimals);
+    updateProgress();
   });
 
   row.appendChild(slider);
