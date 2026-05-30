@@ -6,5 +6,5 @@ void main() {
               sin(sqrt(p.x * p.x + p.y * p.y) + u_time);
     vec3 col = vec3(sin(v * 0.8), sin(v * 1.2 + 2.0), sin(v * 1.5 + 4.0));
     col = col * 0.5 + 0.5;
-    gl_FragColor = vec4(col, 1.0);
+    fragColor = vec4(col, 1.0);
 }

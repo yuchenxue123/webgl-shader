@@ -11,5 +11,5 @@ void main() {
     float aa = max(f.x, f.y);
     checker = mix(1.0 - checker, checker, aa);
     vec3 col = vec3(checker * 0.8 + 0.1);
-    gl_FragColor = vec4(col, 1.0);
+    fragColor = vec4(col, 1.0);
 }

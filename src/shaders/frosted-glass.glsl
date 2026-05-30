@@ -88,5 +88,5 @@ void main() {
     result = mix(result, blurred + tint, panel * alpha * 0.3);
     result += vec3(1.0) * border * panel;
 
-    gl_FragColor = vec4(result, 1.0);
+    fragColor = vec4(result, 1.0);
 }

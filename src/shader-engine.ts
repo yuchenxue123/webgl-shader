@@ -1,12 +1,15 @@
-const VERTEX_SHADER = `attribute vec2 a_position;
+const VERTEX_SHADER = `#version 300 es
+in vec2 a_position;
 void main() {
     gl_Position = vec4(a_position, 0.0, 1.0);
 }`;
 
-const FRAGMENT_PREAMBLE = `precision highp float;
+const FRAGMENT_PREAMBLE = `#version 300 es
+precision highp float;
 uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
+out vec4 fragColor;
 
 `;
 
@@ -43,8 +46,7 @@ export class ShaderEngine {
   private userUniformLocs = new Map<string, WebGLUniformLocation | null>();
 
   constructor(private canvas: HTMLCanvasElement) {
-    const gl = canvas.getContext("webgl2", { premultipliedAlpha: false })
-      || canvas.getContext("webgl", { premultipliedAlpha: false });
+    const gl = canvas.getContext("webgl2", { premultipliedAlpha: false });
     if (!gl) throw new Error("WebGL not supported");
     this.gl = gl;
 
